@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  get "gossips/index", to: "gossips#index"
+  get "gossips/show", to: "gossips#show"
+  Rails.application.routes.draw do
+  get "/", to: "static_pages#home"
+  get "/team", to: "static_pages#team"
+  get "/contact", to: "static_pages#contact"
+  get "/welcome/:first_name", to: "static_pages#welcome"
+
+  resources :gossips, only: [:show, :index]
+  resources :users, only: [:show]
+end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
